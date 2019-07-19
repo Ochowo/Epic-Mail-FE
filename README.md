@@ -1,1 +1,1 @@
-# Epic_Mail_React
+# Epic_Mail
