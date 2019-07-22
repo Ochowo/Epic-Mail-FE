@@ -23,18 +23,18 @@ export const registerUser = (newUser, history) => async (dispatch) => {
     const user = await axios.post('https://epic-mail04.herokuapp.com/api/v1/auth/signup', newUser);
     // dispatch(loading());
     if (user) {
-      // console.log(user.data.data[0]);
+      // onsole.log('data >> >> >>', user.data);
       // Save to local storage
-      const { userToken } = user.data.data[0];
+      const token = user.data.data[0].userToken;
 
       // Set token to local storage
-      localStorage.setItem('token', userToken);
+      localStorage.setItem('token', token);
 
       // Set token to header
-      setAuthToken(userToken);
+      setAuthToken(token);
 
       // Decode token to get user data
-      const decoded = jwtDecode(userToken);
+      const decoded = jwtDecode(token);
 
       // Set current user
       dispatch(setCurrentUser(decoded));
@@ -47,28 +47,51 @@ export const registerUser = (newUser, history) => async (dispatch) => {
       payload: err.response.data,
     });
   }
-  // axios
-  //   .post('https://epic-mail04.herokuapp.com/api/v1/auth/signup', newUser)
-  //   .then((res) => {
-  //     console.log(res.data.data[0]);
-  //     // Save to local storage
-  //     const { userToken } = res.data.data[0];
+};
 
-  //     // Set token to local storage
-  //     localStorage.setItem('token', userToken);
+// Login - Get User Token
+export const loginUser = newUser => async (dispatch) => {
+  try {
+    const user = await axios.post('https://epic-mail04.herokuapp.com/api/v1/auth/login', newUser);
+    if (user) {
+      // console.log(user);
+      // Save to local storage
+      const { token } = user.data.data[0];
+      console.log(token);
+      // Set token to local storage
+      localStorage.setItem('token', token);
 
-  //     // Set token to header
-  //     setAuthToken(userToken);
+      // Set token to header
+      setAuthToken(token);
 
-  //     // Decode token to get user data
-  //     const decoded = jwtDecode(userToken);
+      // Decode token to get user data
+      const decoded = jwtDecode(token);
 
-  //     // Set current user
-  //     dispatch(setCurrentUser(decoded));
-  //     history.push('/inbox');
-  //   })
-  //   .catch(err => dispatch({
-  //     type: GET_ERRORS,
-  //     payload: err.response.data,
-  //   }));
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+    }
+  } catch (error) {
+    // console.log(error);
+  }
+  //  .then((res) => {
+  //   console.log(res);
+  //   // Save to local storage
+  //   const { token } = res.data.data[0];
+
+  //   // Set token to local storage
+  //   localStorage.setItem('token', token);
+
+  //   // Set token to header
+  //   setAuthToken(token);
+
+  //   // Decode token to get user data
+  //   const decoded = jwtDecode(token);
+
+  //   // Set current user
+  //   dispatch(setCurrentUser(decoded));
+  // })
+  // .catch(err => dispatch({
+  //   type: GET_ERRORS,
+  //   payload: err.response.data,
+  // }));
 };

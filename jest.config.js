@@ -21,7 +21,7 @@ module.exports = {
     '!**/coverage/**',
     '!**/tests/**',
     '!**/redux/**',
-    '!**/__tests__/**',
+    '!**/test/**',
     '!**/index.js',
     '!**/dist/**',
   ],
