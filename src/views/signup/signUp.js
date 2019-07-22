@@ -31,6 +31,13 @@ class SignUp extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // componentDidMount() {
+  //   console.log('signup');
+  //   if (this.props.isAuthenticated) {
+  //     this.props.history.push('/dashboard');
+  //   }
+  // }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({

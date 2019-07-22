@@ -127,6 +127,9 @@ a {
   padding-bottom: 5%;
   font-size: 16px;
 }
+table {
+  width: 100%;
+}
 .create,
 .submit2,
 .logbtn {
@@ -249,6 +252,7 @@ footer {
 .userp {
   width: 15%;
   margin-bottom: 2%;
+  display: flex;
 }
 .top-subb {
   background-color: #fff;
@@ -269,13 +273,13 @@ footer {
   width: 100%;
 }
 .usern {
-  font-size: 16px;
-  margin-bottom: 4%;
+  font-size: 12px;
   font-family: 'open-sans', sans-serif;
-  margin-left: 3%;
+  margin-left: 4%;
+  margin-top: 15%;
 }
 .top-us {
-  margin-top: 2%;
+  margin-top: 6%;
 }
 .container2 {
   width: 100%;
