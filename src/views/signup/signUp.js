@@ -68,8 +68,7 @@ class SignUp extends React.Component {
     let displayError;
     let valError;
     const err = errors.error;
-    const { auth } = this.props;
-    const { isAuthenticated } = auth;
+    const { isAuthenticated } = this.props.auth;
     if (!isAuthenticated) {
       if (typeof err === 'string') {
         valError = errors.error;
@@ -94,6 +93,7 @@ class SignUp extends React.Component {
               type="text"
               placeholder="First name"
               name="firstName"
+              value={this.state.firstName}
               onChange={e => this.onChange(e)}
             />
             <br />
@@ -105,6 +105,7 @@ class SignUp extends React.Component {
               type="text"
               placeholder="Last name"
               name="lastName"
+              value={this.state.lastName}
               onChange={e => this.onChange(e)}
             />
             <br />
@@ -114,6 +115,7 @@ class SignUp extends React.Component {
               type="text"
               placeholder="Enter Email"
               name="email"
+              value={this.state.email}
               onChange={e => this.onChange(e)}
             />
             <br />
@@ -125,6 +127,7 @@ class SignUp extends React.Component {
               type="password"
               placeholder="Enter Password"
               name="password"
+              value={this.state.password}
               onChange={e => this.onChange(e)}
             />
             <br />
@@ -136,11 +139,12 @@ class SignUp extends React.Component {
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
+              value={this.state.confirmPassword}
               onChange={e => this.onChange(e)}
             />
             <br />
             {displayError && <div className="feedback">{displayError.confirmPassword}</div>}
-            <InputFields type="submit" className="logbtn" value="Sign Up" />
+            <InputFields type="submit" className="logbtn" value="Sign up" />
             <button className="create name3" id="sigg" type="button" onClick={this.loginForm}>
               Login
             </button>
@@ -158,13 +162,11 @@ SignUp.propTypes = {
     root: PropTypes.string,
     errors: PropTypes.any,
     isAuthenticated: PropTypes.bool,
-    // loading: PropTypes.bool,
   }),
 };
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
-  // loading: state.auth.isLoading,
 });
 export default connect(
   mapStateToProps,
