@@ -33,6 +33,13 @@ class SignIn extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  // componentDidMount() {
+  //   if (this.props.isAuthenticated) {
+  //     console.log('signin');
+  //     this.props.history.push('/dashboard');
+  //   }
+  // }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/inbox');
@@ -125,9 +132,9 @@ class SignIn extends React.Component {
   }
 }
 
-loginUser.prototype = {
+SignIn.propTypes = {
   loginUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.shape({ root: PropTypes.string }),
   // errors: PropTypes.object.isRequired,
 };
 

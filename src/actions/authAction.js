@@ -71,27 +71,21 @@ export const loginUser = newUser => async (dispatch) => {
       dispatch(setCurrentUser(decoded));
     }
   } catch (error) {
-    // console.log(error);
+    dispatch({
+      type: GET_ERRORS,
+      payload: error.response.data,
+    });
   }
-  //  .then((res) => {
-  //   console.log(res);
-  //   // Save to local storage
-  //   const { token } = res.data.data[0];
+};
 
-  //   // Set token to local storage
-  //   localStorage.setItem('token', token);
+// log out user
 
-  //   // Set token to header
-  //   setAuthToken(token);
-
-  //   // Decode token to get user data
-  //   const decoded = jwtDecode(token);
-
-  //   // Set current user
-  //   dispatch(setCurrentUser(decoded));
-  // })
-  // .catch(err => dispatch({
-  //   type: GET_ERRORS,
-  //   payload: err.response.data,
-  // }));
+export const logoutUser = () => (dispatch) => {
+  // Remove token from local storage
+  localStorage.removeItem('token');
+  // Remove auth header for future request
+  setAuthToken(false);
+  // set current user and is Authenticated to false
+  dispatch(setCurrentUser({}));
+  window.location.href = '/';
 };

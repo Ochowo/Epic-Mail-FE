@@ -2,10 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 import Logo from '../logo/logo';
+import { logoutUser } from '../../actions/authAction';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Header extends React.Component {
+  onLogoutClick(e) {
+    e.preventDefault();
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.logoutUser();
+  }
+
   render() {
     const { auth } = this.props;
     const { isAuthenticated } = auth;
@@ -44,10 +55,11 @@ class Header extends React.Component {
               </form>
             </div>
             <div className="userp">
-              <i className="fas fa-user-circle top-us" />
-              <span className="usern" />
+              <FontAwesomeIcon icon={faUserCircle} className="top-us" />
+              <div className="usern">username</div>
             </div>
-            <button className="logout" type="submit">
+
+            <button className="logout" type="submit" onClick={this.onLogoutClick.bind(this)}>
               logout
             </button>
           </div>
@@ -58,6 +70,7 @@ class Header extends React.Component {
   }
 }
 Header.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.shape({
     root: PropTypes.string,
     isAuthenticated: PropTypes.bool,
@@ -67,4 +80,7 @@ Header.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps,
+  { logoutUser },
+)(Header);
