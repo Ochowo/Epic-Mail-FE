@@ -415,11 +415,11 @@ th {
   color: #fff;
   height: 40px;
 }
+
 .boooo,
 #mmop,
 #mmoo,
 #mmo {
-  display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -627,7 +627,6 @@ th {
 }
 
 .spinner {
-  display: none;
   border: 3px solid #f3f3f3; /* Light grey */
   border-top: 3px solid #3498db; /* Blue */
   border-radius: 80%;
@@ -714,6 +713,9 @@ th {
 }
 #newGrpdMessage {
   width: 20%;
+}
+.toggledColor {
+  background-color: #008000;
 }
 @keyframes spin {
   0% {

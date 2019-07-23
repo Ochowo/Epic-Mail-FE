@@ -26,5 +26,6 @@ module.exports = {
     'object-curly-newline': ['error', { consistent: true }],
     'no-underscore-dangle': 0,
     'import/no-named-as-default': 0,
+    'no-nested-ternary': 0,
   },
 };
