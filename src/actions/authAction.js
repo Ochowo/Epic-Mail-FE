@@ -41,7 +41,6 @@ export const registerUser = (newUser, history) => async (dispatch) => {
       history.push('/inbox');
     }
   } catch (err) {
-    console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
@@ -57,7 +56,6 @@ export const loginUser = newUser => async (dispatch) => {
       // console.log(user);
       // Save to local storage
       const { token } = user.data.data[0];
-      console.log(token);
       // Set token to local storage
       localStorage.setItem('token', token);
 
