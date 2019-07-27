@@ -97,6 +97,7 @@ class SignUp extends React.Component {
               className={classnames('input name1 name2', {
                 'is-invalid': displayError,
               })}
+              id="fname"
               type="text"
               placeholder="First name"
               name="firstName"
@@ -109,6 +110,7 @@ class SignUp extends React.Component {
               className={classnames('input name1 name2', {
                 'is-invalid': displayError,
               })}
+              id="lname"
               type="text"
               placeholder="Last name"
               name="lastName"
@@ -118,6 +120,7 @@ class SignUp extends React.Component {
             <br />
             {displayError && <div className="feedback">{displayError.lastName}</div>}
             <InputFields
+              id="ename"
               className="input name1 email2"
               type="text"
               placeholder="Enter Email"
@@ -131,6 +134,7 @@ class SignUp extends React.Component {
               className={classnames('input submit name1 pass2', {
                 'is-invalid': displayError,
               })}
+              id="pname"
               type="password"
               placeholder="Enter Password"
               name="password"
@@ -143,6 +147,7 @@ class SignUp extends React.Component {
               className={classnames('input submit name1 cpass2', {
                 'is-invalid': displayError,
               })}
+              id="cname"
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
@@ -175,6 +180,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
 });
+export { SignUp };
 export default connect(
   mapStateToProps,
   { registerUser },

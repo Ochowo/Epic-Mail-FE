@@ -133,7 +133,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
 });
-
+export { SignIn };
 export default connect(
   mapStateToProps,
   { loginUser },

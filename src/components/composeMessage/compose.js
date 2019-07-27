@@ -115,6 +115,7 @@ const mapStateToProps = state => ({
   loading: state.message.isLoading,
   sent: state.message.isSent,
 });
+export { ComposeMessage };
 export default connect(
   mapStateToProps,
   { postMessages },
