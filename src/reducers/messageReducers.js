@@ -5,13 +5,18 @@ import {
   MESSAGE_NOT_SENT,
   END_COMPOSE_MESSAGE,
   CLOSE_MODAL,
+  GET_INBOX,
+  INIT_INBOX,
 } from '../actions/types';
 
 const initialState = {
-  message: {},
+  message: [],
   isSent: false,
   isLoading: false,
   closeModal: false,
+  auth: {
+    isAuthenticated: false,
+  },
 };
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -26,24 +31,35 @@ export default function (state = initialState, action) {
         isLoading: false,
         message: action.payload,
       };
+    case INIT_INBOX:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case GET_INBOX:
+      return {
+        ...state,
+        isLoading: false,
+        message: action.payload,
+      };
     case MESSAGE_SENT:
       return {
         ...state,
         isSent: true,
-        message: {},
+        message: [],
       };
     case MESSAGE_NOT_SENT:
       return {
         ...state,
         isLoading: false,
-        message: {},
+        // message: [],
       };
     case END_COMPOSE_MESSAGE:
       return {
         ...state,
         isSent: false,
         isLoading: false,
-        message: {},
+        message: [],
       };
     case CLOSE_MODAL:
       return {

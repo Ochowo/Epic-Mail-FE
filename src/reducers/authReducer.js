@@ -12,11 +12,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoading: true,
+        isAuthenticated: false,
       };
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.payload),
+        isAuthenticated: true,
         user: action.payload,
       };
     default:

@@ -1,7 +1,12 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Fragment } from 'react';
+
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 import Navbar from '../../components/navbar/navBar';
 import ComposeMessage from '../../components/composeMessage/compose';
+import InboxMsg from './inbox';
+import Footer from '../../components/footer/footer';
 
 class User extends React.Component {
   constructor(props) {
@@ -11,6 +16,17 @@ class User extends React.Component {
     };
     this.openModalHandler = this.openModalHandler.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
+  }
+
+  componentDidMount() {
+    const { auth } = this.props;
+    const { isAuthenticated } = auth;
+    const { history } = this.props;
+    // eslint-disable-next-line react/prop-types
+    const { push } = history;
+    if (isAuthenticated === false) {
+      push('/');
+    }
   }
 
   openModalHandler() {
@@ -71,12 +87,10 @@ class User extends React.Component {
                   </li>
                 </ul>
               </div>
-              <div className="righ-bo baz">
-                {' '}
-                <ComposeMessage close={this.closeModalHandler} />
-              </div>
+              <ComposeMessage close={this.closeModalHandler} />
             </div>
           </section>
+          <Footer />
         </Fragment>
       );
     }
@@ -124,11 +138,26 @@ class User extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="righ-bo baz" />
+            <div className="righ-bo baz">
+              <InboxMsg />
+            </div>
           </div>
         </section>
+
+        <Footer />
       </Fragment>
     );
   }
 }
-export default User;
+
+User.propTypes = {
+  auth: PropTypes.shape({ root: PropTypes.string, isAuthenticated: PropTypes.bool }),
+  history: PropTypes.shape({ root: PropTypes.string }),
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export { User };
+
+export default connect(mapStateToProps)(User);

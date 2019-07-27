@@ -84,3 +84,4 @@ export default connect(
   mapStateToProps,
   { logoutUser },
 )(Header);
+export { Header };

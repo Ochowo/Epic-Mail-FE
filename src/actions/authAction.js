@@ -2,7 +2,7 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../utils/setAuthToken';
-import { GET_ERRORS, SET_CURRENT_USER, LOADING } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, LOADING, INIT_AUTH } from './types';
 // Set loged in user
 export const setCurrentUser = decoded => ({
   type: SET_CURRENT_USER,
@@ -10,6 +10,9 @@ export const setCurrentUser = decoded => ({
 });
 
 export const loading = () => ({
+  type: LOADING,
+});
+export const InitAuth = () => ({
   type: LOADING,
 });
 export const setErrors = error => ({
@@ -20,10 +23,11 @@ export const setErrors = error => ({
 // Register
 export const registerUser = (newUser, history) => async (dispatch) => {
   try {
+    dispatch(loading());
     const user = await axios.post('https://epic-mail04.herokuapp.com/api/v1/auth/signup', newUser);
-    // dispatch(loading());
+    dispatch(InitAuth());
     if (user) {
-      // onsole.log('data >> >> >>', user.data);
+      console.log(user);
       // Save to local storage
       const token = user.data.data[0].userToken;
 
@@ -38,7 +42,7 @@ export const registerUser = (newUser, history) => async (dispatch) => {
 
       // Set current user
       dispatch(setCurrentUser(decoded));
-      history.push('/inbox');
+      // history.push('/inbox');
     }
   } catch (err) {
     dispatch({
@@ -51,9 +55,9 @@ export const registerUser = (newUser, history) => async (dispatch) => {
 // Login - Get User Token
 export const loginUser = newUser => async (dispatch) => {
   try {
+    dispatch(loading());
     const user = await axios.post('https://epic-mail04.herokuapp.com/api/v1/auth/login', newUser);
     if (user) {
-      // console.log(user);
       // Save to local storage
       const { token } = user.data.data[0];
       // Set token to local storage

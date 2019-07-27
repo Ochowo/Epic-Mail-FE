@@ -6,15 +6,18 @@ import Landing from '../../components/landing/landing';
 import Footer from '../../components/footer/footer';
 
 class HomePage extends React.Component {
-  componentDidMount() {
-    const { auth } = this.props;
-    const { isAuthenticated } = auth;
-    const { history } = this.props;
-    if (isAuthenticated) {
-      // eslint-disable-next-line react/prop-types
-      history.push('/inbox');
-    }
-  }
+  // componentDidMount() {
+  //   const { auth } = this.props;
+  //   const { isAuthenticated } = auth;
+  //   const { history } = this.props;
+  //   // eslint-disable-next-line react/prop-types
+  //   const { push } = history;
+  //   if (isAuthenticated) {
+  //     push('/inbox');
+  //   } else {
+  //     push('/');
+  //   }
+  // }
 
   render() {
     return (

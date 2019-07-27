@@ -2,6 +2,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { postMessages } from '../../actions/messagesAction';
@@ -26,6 +27,7 @@ class ComposeMessage extends React.Component {
   }
 
   onSubmit(e) {
+    const { sendMessage } = this.props;
     e.preventDefault();
     const data = {
       receiverEmail: this.state.receiverEmail,
@@ -33,6 +35,7 @@ class ComposeMessage extends React.Component {
       message: this.state.message,
     };
     this.props.postMessages(data);
+    sendMessage();
     this.setState({
       receiverEmail: '',
       subject: '',
@@ -101,7 +104,7 @@ class ComposeMessage extends React.Component {
   }
 }
 ComposeMessage.propTypes = {
-  postMessages: PropTypes.func.isRequired,
+  postMessages: PropTypes.func,
   message: PropTypes.shape({
     root: PropTypes.string,
     isSent: PropTypes.bool,
@@ -115,7 +118,14 @@ const mapStateToProps = state => ({
   loading: state.message.isLoading,
   sent: state.message.isSent,
 });
+export const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    sendMessage: postMessages,
+  },
+  dispatch,
+);
+export { ComposeMessage };
 export default connect(
   mapStateToProps,
-  { postMessages },
+  mapDispatchToProps,
 )(withRouter(ComposeMessage));

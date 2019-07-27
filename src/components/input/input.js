@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const inputField = ({ id, className, type, name, placeholder, onChange, value }) => (
+const InputField = ({ id, className, type, name, placeholder, onChange, value }) => (
   <Fragment>
     <input
       id={id}
@@ -15,7 +15,7 @@ const inputField = ({ id, className, type, name, placeholder, onChange, value })
   </Fragment>
 );
 
-inputField.propTypes = {
+InputField.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -25,4 +25,4 @@ inputField.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default inputField;
+export default InputField;

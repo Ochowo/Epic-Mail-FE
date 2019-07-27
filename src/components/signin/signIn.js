@@ -8,14 +8,14 @@ import { withRouter } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import Logo from '../logo/logo';
-import InputFields from '../input/input';
+import InputField from '../input/input';
 // eslint-disable-next-line import/no-cycle
 import SignUp from '../../views/signup/signUp';
 
 import { loginUser } from '../../actions/authAction';
 // eslint-disable-next-line import/no-cycle
 import ResetPassword from '../../views/resetpassword/resetPassword';
-import Title from '../title/title';
+import Heading from '../title/title';
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -43,6 +43,17 @@ class SignIn extends React.Component {
       });
     }
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.auth.isAuthenticated) {
+  //     this.props.history.push('/inbox');
+  //   }
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors,
+  //     });
+  //   }
+  // }
 
   onChange(e) {
     const { name } = e.target;
@@ -85,8 +96,8 @@ class SignIn extends React.Component {
       <Fragment>
         <form name="epic-sign" className="bxx box" id="bxx" onSubmit={this.onSubmit}>
           <Logo />
-          <Title title="Sign in to use Epic Mail" />
-          <InputFields
+          <Heading title="Sign in to use Epic Mail" />
+          <InputField
             className={classnames('input email3', {
               'is-invalid': displayError,
             })}
@@ -97,7 +108,7 @@ class SignIn extends React.Component {
             onChange={e => this.onChange(e)}
           />
           {displayError && <div className="feedback">{displayError.email}</div>}
-          <InputFields
+          <InputField
             className={classnames('input pass3', {
               'is-invalid': displayError,
             })}
@@ -109,7 +120,7 @@ class SignIn extends React.Component {
             onChange={e => this.onChange(e)}
           />
           {displayError && <div className="feedback">{displayError.password}</div>}
-          <InputFields type="submit" className="logbtn" value="Login" />
+          <InputField type="submit" className="logbtn" value="Login" />
           <div className="acct" id="forg" onClick={this.resetForm} role="presentation">
             Forgot Password
           </div>
@@ -133,7 +144,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
 });
-
+export { SignIn };
 export default connect(
   mapStateToProps,
   { loginUser },

@@ -10,8 +10,8 @@ import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import { registerUser } from '../../actions/authAction';
 import Logo from '../../components/logo/logo';
-import Title from '../../components/title/title';
-import InputFields from '../../components/input/input';
+import Heading from '../../components/title/title';
+import InputField from '../../components/input/input';
 import SignIn from '../../components/signin/signIn';
 
 class SignUp extends React.Component {
@@ -26,17 +26,8 @@ class SignUp extends React.Component {
       confirmPassword: '',
       errors: {},
     };
-    this.onChange = this.onChange.bind(this);
     this.loginForm = this.loginForm.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
-
-  // componentDidMount() {
-  //   console.log('signup');
-  //   if (this.props.isAuthenticated) {
-  //     this.props.history.push('/dashboard');
-  //   }
-  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -86,14 +77,15 @@ class SignUp extends React.Component {
     if (login) {
       return (
         <Fragment>
-          <form name="epic-sign" className="box bxx" onSubmit={this.onSubmit}>
+          <form name="epic-sign" className="box bxx" onSubmit={e => this.onSubmit(e)}>
             <Logo />
-            <Title
+            <Heading
               title="
           Register on Epic Mail"
             />
             {valError && <div className="feedback">{valError}</div>}
-            <InputFields
+            <InputField
+              id="fname"
               className={classnames('input name1 name2', {
                 'is-invalid': displayError,
               })}
@@ -105,10 +97,11 @@ class SignUp extends React.Component {
             />
             <br />
             {displayError && <div className="feedback">{displayError.firstName}</div>}
-            <InputFields
+            <InputField
               className={classnames('input name1 name2', {
                 'is-invalid': displayError,
               })}
+              id="lname"
               type="text"
               placeholder="Last name"
               name="lastName"
@@ -117,7 +110,8 @@ class SignUp extends React.Component {
             />
             <br />
             {displayError && <div className="feedback">{displayError.lastName}</div>}
-            <InputFields
+            <InputField
+              id="ename"
               className="input name1 email2"
               type="text"
               placeholder="Enter Email"
@@ -127,10 +121,11 @@ class SignUp extends React.Component {
             />
             <br />
             {displayError && <div className="feedback">{displayError.email}</div>}
-            <InputFields
+            <InputField
               className={classnames('input submit name1 pass2', {
                 'is-invalid': displayError,
               })}
+              id="pname"
               type="password"
               placeholder="Enter Password"
               name="password"
@@ -139,10 +134,11 @@ class SignUp extends React.Component {
             />
             <br />
             {displayError && <div className="feedback">{displayError.password}</div>}
-            <InputFields
+            <InputField
               className={classnames('input submit name1 cpass2', {
                 'is-invalid': displayError,
               })}
+              id="cname"
               type="password"
               placeholder="Confirm Password"
               name="confirmPassword"
@@ -151,8 +147,13 @@ class SignUp extends React.Component {
             />
             <br />
             {displayError && <div className="feedback">{displayError.confirmPassword}</div>}
-            <InputFields type="submit" className="logbtn" value="Sign up" />
-            <button className="create name3" id="sigg" type="button" onClick={this.loginForm}>
+            <InputField type="submit" className="logbtn" value="Sign up" />
+            <button
+              className="create name3"
+              id="sigg"
+              type="button"
+              onClick={e => this.loginForm(e)}
+            >
               Login
             </button>
           </form>
@@ -175,6 +176,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors,
 });
+export { SignUp };
 export default connect(
   mapStateToProps,
   { registerUser },
