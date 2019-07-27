@@ -80,6 +80,7 @@ Header.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
 });
+export { Header };
 export default connect(
   mapStateToProps,
   { logoutUser },

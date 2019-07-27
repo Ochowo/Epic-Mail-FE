@@ -21,7 +21,7 @@ export const setErrors = error => ({
 export const registerUser = (newUser, history) => async (dispatch) => {
   try {
     const user = await axios.post('https://epic-mail04.herokuapp.com/api/v1/auth/signup', newUser);
-    // dispatch(loading());
+    dispatch(loading());
     if (user) {
       // onsole.log('data >> >> >>', user.data);
       // Save to local storage

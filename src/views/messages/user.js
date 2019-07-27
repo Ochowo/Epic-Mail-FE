@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react';
 import Navbar from '../../components/navbar/navBar';
 import ComposeMessage from '../../components/composeMessage/compose';
+import InboxMsg from './inbox';
 
 class User extends React.Component {
   constructor(props) {
@@ -46,8 +47,6 @@ class User extends React.Component {
                   </li>
                   <li>
                     <a href="https://epic-mail04.herokuapp.com/user.html">Inbox</a>
-                    {' '}
-                    <button className="em-btn" type="button" />
                   </li>
                   <li>
                     <span className="seent">Sent</span>
@@ -63,7 +62,7 @@ class User extends React.Component {
                   </li>
                   <li>
                     <span className="cr-grppp">
-                      <a href="nhttps://epic-mail04.herokuapp.com/ew.html">
+                      <a href="https://epic-mail04.herokuapp.com">
                         <span className="plus">+</span>
                         <span className="crrr">Create group</span>
                       </a>
@@ -99,8 +98,6 @@ class User extends React.Component {
                 </li>
                 <li>
                   <a href="https://epic-mail04.herokuapp.com/user.html">Inbox</a>
-                  {' '}
-                  <button className="em-btn" type="button" />
                 </li>
                 <li>
                   <span className="seent">Sent</span>
@@ -124,11 +121,14 @@ class User extends React.Component {
                 </li>
               </ul>
             </div>
-            <div className="righ-bo baz" />
+            <div className="righ-bo baz">
+              <InboxMsg />
+            </div>
           </div>
         </section>
       </Fragment>
     );
   }
 }
+
 export default User;
