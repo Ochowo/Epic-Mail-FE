@@ -6,7 +6,7 @@
 A web app that helps people exchange messages/information over the internet.
 
 #### Template
-Template is hosted [here](https://ochowo.github.io/Epic-Mail/)
+Template is hosted [here](https://epic-mai008.herokuapp.com/)
 
 #### Project Management
 Project is managed with pivotal tracker [here](https://www.pivotaltracker.com/n/projects/2314414)
